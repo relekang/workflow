@@ -19,6 +19,7 @@
     "react-example": "node cli.js ReactExample.js"
   },
   "dependencies": {
+    "default-browser": "^2.0.1",
     "workflow-app-atom": "0.2.2",
     "workflow-app-chrome": "0.2.1",
     "workflow-app-iterm": "0.3.1",
