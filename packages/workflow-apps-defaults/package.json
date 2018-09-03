@@ -15,7 +15,8 @@
     "index.js"
   ],
   "scripts": {
-    "example": "node cli.js Example.js"
+    "example": "node cli.js Example.js",
+    "react-example": "node cli.js ReactExample.js"
   },
   "dependencies": {
     "workflow-app-atom": "0.2.2",

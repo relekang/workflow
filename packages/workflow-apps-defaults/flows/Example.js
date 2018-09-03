@@ -1,16 +1,32 @@
 /* eslint-env node */
-import React from 'react';
-import render, { Workspace, requireComponent } from 'workflow-react';
+import { Browser, TextEditor, Terminal } from 'workflow-apps-defaults';
 
-const { Terminal, Browser, TextEditor } = requireComponent('workflow-apps-defaults');
-const { SplitV } = requireComponent('workflow-layout-tiled');
-
-export default render(
-  <Workspace name={'workflow-apps-defaults'}>
-    <SplitV percent={1.0}>
-      <Terminal percent={0.33} cwd={__dirname} cmd={'pwd'} />
-      <Browser percent={0.33} url={'https://github.com/havardh/workflow'} />
-      <TextEditor percent={0.34} file={__filename} />
-    </SplitV>
-  </Workspace>
-);
+export default {
+  name: 'workflow-example',
+  type: 'workspace',
+  children: [
+    {
+      type: 'layout',
+      layout: 'splith',
+      percent: 1.0,
+      children: [
+        {
+          ...Terminal,
+          cwd: __dirname,
+          cmd: 'pwd',
+          percent: 0.33,
+        },
+        {
+          ...Browser,
+          url: 'http://github.com/havardh/workflow',
+          percent: 0.33,
+        },
+        {
+          ...TextEditor,
+          file: __filename,
+          percent: 0.34,
+        },
+      ],
+    },
+  ],
+};
