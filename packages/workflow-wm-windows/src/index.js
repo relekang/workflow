@@ -17,7 +17,7 @@ class Windows {
   }
 
   async apply(layout) {
-    const apps = findAllApps(layout);
+    const apps = await findAllApps(layout);
 
     const { startOnPositionByWindowClass, startOnPositionByReturnedPid } = this;
 

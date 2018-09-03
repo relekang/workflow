@@ -1,4 +1,4 @@
-export function findAllApps(root) {
+export async function findAllApps(root) {
   const apps = [];
 
   let nodes = [root];
@@ -7,6 +7,8 @@ export function findAllApps(root) {
 
     if (node.type === 'app') {
       apps.push(node);
+    } else if (node.type === 'async-app') {
+      apps.push({ ...node, ...(await node.loader()) });
     } else {
       if (node.children) {
         nodes.push(...node.children);

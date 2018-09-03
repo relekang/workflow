@@ -93,8 +93,12 @@ function calculate(node, { position, screen }) {
     case 'layout':
       return calculateLayout(node, { position, screen });
     case 'app':
+    case 'async-app':
       return calculateApp(node, { position, screen });
-    default:
+    case undefined:
+    case null:
       throw new Error(`Unrecognized node type: '${JSON.stringify(node)}'`);
+    default:
+      throw new Error(`Unrecognized node type: '${node.type}'`);
   }
 }

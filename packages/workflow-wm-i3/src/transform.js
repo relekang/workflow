@@ -33,8 +33,8 @@ function findAllApps(root) {
   return apps;
 }
 
-function createFloatingNodes(node) {
-  const apps = findAllApps(node);
+async function createFloatingNodes(node) {
+  const apps = await findAllApps(node);
 
   return apps.map(app => {
     const { left, top, width, height } = app.position;
@@ -91,11 +91,11 @@ function extractFloating(node) {
   }
 }
 
-function genLayout(node) {
+async function genLayout(node) {
   const { type, layout, percent } = node;
   if (type === 'layout') {
     if (layout === 'float') {
-      return createFloatingNodes(node);
+      return await createFloatingNodes(node);
     } else {
       const children = node.children.map(genLayout);
       return createLayoutNode({ layout, percent, children });
@@ -107,11 +107,10 @@ function genLayout(node) {
   }
 }
 
-export default function transform(node) {
+export default async function transform(node) {
   const nodes = extractFloating(node);
 
-  const layouts = nodes
-    .map(genLayout)
+  const layouts = (await Promise.all(nodes.map(genLayout)))
     .filter(({ type }) => type !== 'empty')
     .map(layout => (layout.length ? layout : [layout]));
 

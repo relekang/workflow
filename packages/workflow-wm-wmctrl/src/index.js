@@ -24,7 +24,7 @@ class Wmctrl {
   }
 
   async apply(layout) {
-    const apps = findAllApps(layout);
+    const apps = await findAllApps(layout);
 
     for (let app of apps) {
       const pid = await this.runCmd(app);
