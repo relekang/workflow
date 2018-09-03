@@ -11,6 +11,7 @@ function render(element) {
   const container = ROOT_NODE;
   // Returns the current fiber (flushed fiber)
   const node = WorkflowRenderer.createContainer(container);
+  console.log(element.props);
 
   // Schedules a top level update with current fiber and a priority level
   // (depending upon the context)
